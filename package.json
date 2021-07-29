@@ -1,0 +1,14 @@
+{
+  "name": "mmm-lolesport-standings",
+  "version": "1.0.0",
+  "description": "Displays standings for League of Legends Esport teams.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xadamxk",
+  "license": "MIT",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
+}
