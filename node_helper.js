@@ -6,7 +6,7 @@
  */
 
 var NodeHelper = require("node_helper");
-var LolesportsApi = require("lolesports-js-sdk");
+var LolesportsApi = require("esm")(module)("lolesports-js-sdk");
 var defaultClient = LolesportsApi.ApiClient.instance;
 var api = new LolesportsApi.EventsApi();
 
@@ -17,11 +17,11 @@ module.exports = NodeHelper.create({
 			defaultClient.basePath = payload["basePath"];
 			defaultClient.authentications["apiKeyAuth"]["apiKey"] = payload["apiKey"];
 
-			api.getSchedule(LolesportsApi.Locale.enUS, { leagueId: payload["tournamentIds"] }, function (error, data, response) {
+			api.getSchedule(LolesportsApi.Locale.enUS, { tournamentId: payload["tournamentIds"] }, function (error, data, response) {
 				if (error) {
 					console.error(error);
 				} else {
-					console.log("API called successfully. Returned data: ");
+					console.log("API called successfully. Returned data: " + JSON.stringify(data));
 				}
 			});
 			console.log("Working notification system. Notification:", notification, "payload: ", payload);

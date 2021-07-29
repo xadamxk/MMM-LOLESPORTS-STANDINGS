@@ -5,7 +5,7 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 		// lang: config.language,
 		apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
 		basePath: "https://esports-api.lolesports.com/persisted/gw",
-		tournamentIds: [105658534671026792n],
+		tournamentIds: ["105658534671026792"],
 		hl: "en-US"
 	},
 
