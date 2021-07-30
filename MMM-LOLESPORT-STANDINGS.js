@@ -1,5 +1,5 @@
 Module.register("MMM-LOLESPORT-STANDINGS", {
-	// Default module config.
+	// Default module config
 	defaults: {
 		updateInterval: 30 * 60 * 1000, // every 30 minutes
 		// lang: config.language,
@@ -43,7 +43,7 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 
 	// Fetch schedule for provided tournament ids
 	getData: function () {
-		this.sendSocketNotification("MMM-LOLESPORTS-STANDINGS-GET-SCHEDULE", {
+		this.sendSocketNotification("MMM-LOLESPORTS-STANDINGS-GET-STANDINGS", {
 			apiKey: this.config.apiKey,
 			basePath: this.config.basePath,
 			tournamentIds: this.config.tournamentIds,
@@ -53,9 +53,36 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 
 	// Schedule data is coming back
 	socketNotificationReceived: function (notification, payload) {
-		if (notification === "MMM-LOLESPORTS-STANDINGS-SCHEDULE") {
-			// Manipulate response
-			console.log(payload);
+		if (notification === "MMM-LOLESPORTS-STANDINGS-STANDINGS") {
+			this.getStandingData(payload);
 		}
+	},
+	getStandingData: function (data) {
+		let stageName = "";
+		let standings = {};
+		console.log(data);
+		if (!data || !data.hasOwnProperty("data")) {
+			return []; // Wrong tournament id most likely
+		}
+		data["data"]["standings"].forEach((standing) => {
+			if (!standing["stages"]) {
+				return;
+			}
+			standing["stages"].forEach((stage) => {
+				stageName = stage["name"];
+				stage["sections"].forEach((section) => {
+					if (!section["rankings"] || !section["rankings"].length) {
+						return;
+					}
+					console.log(section["rankings"]);
+					// section["rankings"].forEach(ranking => {
+					//   standings[ranking["ordinal"]]["teams"]
+					// })
+				});
+			});
+		});
+	},
+	appendStandingData: function (rankings) {
+		// TODO: Figure out how to append to HTML
 	}
 });
