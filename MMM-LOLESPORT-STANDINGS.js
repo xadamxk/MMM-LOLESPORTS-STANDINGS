@@ -1,37 +1,31 @@
 Module.register("MMM-LOLESPORT-STANDINGS", {
 	// Default module config
 	defaults: {
-		updateInterval: 1 * 30 * 1000, // every 30 seconds
+		updateInterval: 60, // minutes
 		// lang: config.language,
 		apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
 		basePath: "https://esports-api.lolesports.com/persisted/gw",
-		tournamentIds: ["105658534671026792"],
+		tournamentIds: ["105658534671026792"], // NA LCS
 		hl: "en-US",
-		useTeamFullName: false,
-		showTeamIcons: true
+		useTeamFullName: true, // Show team's full name rather than team code
+		showTeamIcons: true, // Show team's icon
+		showStageName: true // Show the stage name (ie. Regular Season, Playoffs, etc)
 	},
 
 	// Module properties.
 	standings: [],
+	stageName: "",
 
 	// Start the module.
 	start: function () {
-		// Check config for values
-		// Set some defaults if not found in config
 		// Get initial API data
 		this.getData();
-		// // Schedule the API data update.
-		// this.scheduleUpdate();
-		// // Schedule the first UI load
-		// var self = this;
-		// setTimeout(function() {
-		// 	self.rotateStandings();
-		// }, this.config.initialLoadDelay);
-		// // Schedule the UI load based on normal interval
-		// var self = this;
-		// setInterval(function() {
-		// 	self.rotateStandings();
-		// }, this.config.rotateInterval);
+
+		// Schedule update poll
+		var self = this;
+		setInterval(function () {
+			self.getData();
+		}, self.config.updateInterval * 60 * 1000); //convert to milliseconds
 	},
 	getTranslations() {
 		return {
@@ -47,6 +41,7 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 	getTemplateData() {
 		return {
 			standings: this.standings,
+			stageName: this.stageName,
 			config: this.config
 		};
 	},
@@ -83,6 +78,7 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 						return;
 					}
 					this.standings = section["rankings"];
+					this.stageName = stageName;
 					this.updateDom(500);
 				});
 			});
