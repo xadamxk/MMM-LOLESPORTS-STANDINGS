@@ -1,4 +1,4 @@
-Module.register("MMM-LOLESPORT-STANDINGS", {
+Module.register("MMM-LOLESPORTS-STANDINGS", {
 	// Default module config
 	defaults: {
 		updateInterval: 60, // minutes
@@ -33,7 +33,7 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 		};
 	},
 	getStyles: function () {
-		return ["MMM-LOLESPORT-STANDINGS.css"];
+		return ["MMM-LOLESPORTS-STANDINGS.css"];
 	},
 	getTemplate() {
 		return `templates/standings.njk`;
