@@ -23,18 +23,18 @@ git clone https://github.com:xadamxk/MMM-LOLESPORTS-STANDINGS.git
 
 ## Configuration
 Add `MMM-LOLESPORTS-STANDINGS` module to the `modules` array in the `config/config.js` file:
-````json
+````javascript
 modules: [
-		{
-			module: "MMM-LOLESPORTS-STANDINGS",
-			position: "middle_center",
-			config: {
-        tournamentIds: ["105658534671026792"], // Tournament IDs: Default to 2021 LCS Season
-			  useTeamFullName: true, // Show team's full name rather than team code
-		    showTeamIcons: true, // Show team's icon
-		    showStageName: true // Show the stage name (ie. Regular Season, Playoffs, etc)
-			}
+	{
+		module: "MMM-LOLESPORTS-STANDINGS",
+		position: "middle_center",
+		config: {
+			tournamentIds: ["105658534671026792"], // Tournament IDs: Default to 2021 LCS Season
+			useTeamFullName: true, // Show team's full name rather than team code
+			showTeamIcons: true, // Show team's icon
+			showStageName: true // Show the stage name (ie. Regular Season, Playoffs, etc)
 		}
+	}
 ]
 ````
 ### Configuration Options
