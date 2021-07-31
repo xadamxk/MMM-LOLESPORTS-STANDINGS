@@ -1,20 +1,18 @@
 Module.register("MMM-LOLESPORT-STANDINGS", {
 	// Default module config
 	defaults: {
-		updateInterval: 30 * 60 * 1000, // every 30 minutes
+		updateInterval: 1 * 30 * 1000, // every 30 seconds
 		// lang: config.language,
 		apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
 		basePath: "https://esports-api.lolesports.com/persisted/gw",
 		tournamentIds: ["105658534671026792"],
-		hl: "en-US"
+		hl: "en-US",
+		useTeamFullName: false,
+		showTeamIcons: true
 	},
 
 	// Module properties.
-	updateInterval: defaults.updateInterval,
-	apiKey: defaults.apiKey,
-	basePath: defaults.basePath,
-	tournamentIds: defaults.tournamentIds,
-	hl: defaults.hl,
+	standings: [],
 
 	// Start the module.
 	start: function () {
@@ -35,12 +33,23 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 		// 	self.rotateStandings();
 		// }, this.config.rotateInterval);
 	},
-
-	// Define required styles.
-	// getStyles: function () {
-	// 	return ["MMM-MyStandings.css"];
-	// },
-
+	getTranslations() {
+		return {
+			en: "translations/en.json"
+		};
+	},
+	getStyles: function () {
+		return ["MMM-LOLESPORT-STANDINGS.css"];
+	},
+	getTemplate() {
+		return `templates/standings.njk`;
+	},
+	getTemplateData() {
+		return {
+			standings: this.standings,
+			config: this.config
+		};
+	},
 	// Fetch schedule for provided tournament ids
 	getData: function () {
 		this.sendSocketNotification("MMM-LOLESPORTS-STANDINGS-GET-STANDINGS", {
@@ -57,10 +66,9 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 			this.getStandingData(payload);
 		}
 	},
+	// Condense standing data and render it
 	getStandingData: function (data) {
 		let stageName = "";
-		let standings = {};
-		console.log(data);
 		if (!data || !data.hasOwnProperty("data")) {
 			return []; // Wrong tournament id most likely
 		}
@@ -74,15 +82,10 @@ Module.register("MMM-LOLESPORT-STANDINGS", {
 					if (!section["rankings"] || !section["rankings"].length) {
 						return;
 					}
-					console.log(section["rankings"]);
-					// section["rankings"].forEach(ranking => {
-					//   standings[ranking["ordinal"]]["teams"]
-					// })
+					this.standings = section["rankings"];
+					this.updateDom(500);
 				});
 			});
 		});
-	},
-	appendStandingData: function (rankings) {
-		// TODO: Figure out how to append to HTML
 	}
 });
