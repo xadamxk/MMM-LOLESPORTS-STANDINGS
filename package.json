@@ -16,6 +16,7 @@
   "author": "xadamxk",
   "license": "MIT",
   "dependencies": {
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "lolesports-js-sdk": "^1.0.0"
   }
 }
