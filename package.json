@@ -2,7 +2,14 @@
   "name": "mmm-lolesports-standings",
   "version": "1.0.0",
   "description": "Displays standings for League of Legends Esport teams.",
-  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS"
+  },
+  "bugs": {
+    "url": "https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS/issues"
+  },
+  "homepage": "https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS#readme",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
