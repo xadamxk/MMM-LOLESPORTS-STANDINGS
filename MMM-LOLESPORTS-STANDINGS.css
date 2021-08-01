@@ -1,7 +1,7 @@
 .logo {
   padding-top: 5px;
-  height: 35px;
-  width: 35px;
+  height: 50px;
+  width: 50px;
 }
 
 .ordinalText {
@@ -14,14 +14,14 @@ body {
 
 .teamCode {
   font-size: 20px;
-  padding: 0px;
+  height: 20px;
+  padding-bottom: 4px;
 }
 
 .teamRatio {
   font-size: 12px;
+  height: 12px;
   color: #8fa3b0;
-  padding: 0px;
-  margin: 0px;
 }
 
 .row {
