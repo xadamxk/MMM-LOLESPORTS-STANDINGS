@@ -53,6 +53,7 @@ modules: [
 ### Tournament Ids
 
 | **League** | **Tournament Id** |
+| --- | --- |
 | LCS | `105658534671026792` |
 | LCS Academy | `106273298442359221` |
 | LEC | `106269680921022418` |
