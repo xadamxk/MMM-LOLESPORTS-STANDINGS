@@ -1,5 +1,4 @@
 .logo {
-  padding-top: 5px;
   height: 50px;
   width: 50px;
 }
@@ -25,5 +24,6 @@ body {
 }
 
 .row {
-  height: 34px;
+  height: 36px;
+  vertical-align:top;
 }
