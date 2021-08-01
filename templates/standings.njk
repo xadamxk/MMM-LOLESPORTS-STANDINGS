@@ -4,12 +4,12 @@
       <td>{{ 'NO_STANDINGS_FOUND' | translate }}</td>
     </tr>
   {% else %}
-  {% if config.showStageName %}
-    <thead>
-      <tr>
-        <div>{{stageName}}</div>
-      </tr>
-    </thead>
+    {% if config.showStageName %}
+      <thead>
+        <tr>
+          <div>{{stageName}}</div>
+        </tr>
+      </thead>
     {% endif %}
     {% for standing in standings %}
       {% if standing.teams.length === 1 %}
@@ -36,7 +36,11 @@
                 <td><img class="logo" src="{{ team.image }}"/></td>
               {% endif %}
               <td class="row">
-                <div class="teamCode">{{standing.teams[0].code}}</div>
+                {% if config.useTeamFullName %}
+                  <div class="teamCode">{{standing.teams[0].name}}</div>
+                {% else %}
+                  <div class="teamCode">{{standing.teams[0].code}}</div>
+                {% endif %}
                 <div class="teamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
               </td>
             </tr>
@@ -47,8 +51,12 @@
                 <td><img class="logo" src="{{ team.image }}"/></td>
               {% endif %}
               <td class="row">
-                <div class="teamCode">{{standing.teams[0].code}}</div>
-                <div class="teamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+                {% if config.useTeamFullName %}
+                  <div class="teamCode">{{team.name}}</div>
+                {% else %}
+                  <div class="teamCode">{{team.code}}</div>
+                {% endif %}
+                <div class="teamRatio">{{team.record.wins}}W-{{team.record.losses}}L</div>
               </td>
             </tr>
           {% endif %}
