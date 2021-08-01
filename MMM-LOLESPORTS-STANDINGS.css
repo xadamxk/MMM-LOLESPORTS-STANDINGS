@@ -5,7 +5,7 @@
 }
 
 .ordinalText {
-  font-size: 36px;
+  font-size: 32px;
 }
 
 body {
@@ -19,4 +19,8 @@ body {
 .teamRatio {
   font-size: 12px;
   color: #8fa3b0;
+}
+
+.row {
+  height: 34px;
 }
