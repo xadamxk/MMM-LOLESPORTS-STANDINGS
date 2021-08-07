@@ -1,4 +1,4 @@
-<table>
+<table class="leagueStandingsTable">
   {% if standings.length === 0 %}
     <tr>
       <td>{{ 'NO_STANDINGS_FOUND' | translate }}</td>
@@ -13,12 +13,12 @@
     {% endif %}
     {% for standing in standings %}
       {% if standing.teams.length === 1 %}
-        <tr class="row">
+        <tr class="leagueStandingsRow">
           <td class="ordinalText">{{standing.ordinal}}</td>
           {% if config.showTeamIcons %}
             <td><img class="logo" src="{{ standing.teams[0].image }}"/></td>
           {% endif %}
-          <td class="row">
+          <td class="leagueStandingsRow">
             {% if config.useTeamFullName %}
               <div class="teamCode">{{standing.teams[0].name}}</div>
             {% else %}
@@ -35,7 +35,7 @@
               {% if config.showTeamIcons %}
                 <td><img class="logo" src="{{ team.image }}"/></td>
               {% endif %}
-              <td class="row">
+              <td class="leagueStandingsRow">
                 {% if config.useTeamFullName %}
                   <div class="teamCode">{{standing.teams[0].name}}</div>
                 {% else %}
@@ -50,7 +50,7 @@
               {% if config.showTeamIcons %}
                 <td><img class="logo" src="{{ team.image }}"/></td>
               {% endif %}
-              <td class="row">
+              <td class="leagueStandingsRow">
                 {% if config.useTeamFullName %}
                   <div class="teamCode">{{team.name}}</div>
                 {% else %}
