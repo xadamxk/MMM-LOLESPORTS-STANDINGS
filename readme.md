@@ -18,7 +18,7 @@ cd ~/MagicMirror/modules
 
 Clone this repository:
 ````
-git clone https://github.com:xadamxk/MMM-LOLESPORTS-STANDINGS.git
+git clone https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS.git
 ````
 
 ## Configuration
