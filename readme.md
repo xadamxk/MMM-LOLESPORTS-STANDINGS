@@ -51,7 +51,25 @@ modules: [
 | `showStageName` | boolean  | true | Set `false` to hide the stage name above standings list (ie. Regular Season, Playoffs, etc) |
 
 ### Tournament Ids
+2022 Tournament Ids
+| **League** | **Tournament Id** |
+| --- | --- |
+| Worlds | N/A |
+| LCS | `107458335260330212` |
+| LCS Academy | `107418086627198298` |
+| LEC | `107417059262120466` |
+| LCK | `107418445247362001` |
+| LPL | `107417779630700437` |
+| TCL | `107566408953200568` |
+| CBLOL | `107405837336179496` |
+| LLA | `106845973122821257` |
+| LCO | `107439320897210747` |
+| LJL | `106269757536651711` |
+| LCL | `106269769724268826` |
+| PCS | `106269875362449980` |
+| VCS | `107611014996486035` |
 
+2021 Tournament Ids
 | **League** | **Tournament Id** |
 | --- | --- |
 | Worlds | `106926282333089592` |
