@@ -6,12 +6,18 @@ Other league related modules:
 - <a href="https://github.com/xadamxk/MMM-CHAMPIONSQUEUE-LEADERBOARD">MMM-CHAMPIONSQUEUE-LEADERBOARD</a>: Display LOL Champions Queue standings
 - <a href="https://github.com/xadamxk/MMM-LOLESPORTS-SCHEDULES">MMM-LOLESPORTS-SCHEDULES</a>: Display LOL Esports league schedules 
 
-## Preview
+## Previews with Configuration Samples
+#### Default
 <img src="https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS/blob/master/screenshots/screenshot_default.png?raw=true" title="Preview"  />
 
 <details> 
   <summary>Team Codes Format:</summary>
   <img src="https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS/blob/master/screenshots/screenshot_teamCodes.png?raw=true" title="Preview Team Codes"  />
+	<pre><code>
+config: {
+    useTeamFullName: false
+}
+	</code></pre>
 </details>
 
 ## Installation
@@ -22,7 +28,13 @@ cd ~/MagicMirror/modules
 
 Clone this repository:
 ````
-git clone https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS.git
+SSH: git clone git@github.com:xadamxk/MMM-CHAMPIONSQUEUE-LEADERBOARD.git
+HTTPS: git clone https://github.com/xadamxk/MMM-CHAMPIONSQUEUE-LEADERBOARD.git
+````
+
+Install/Update Dependencies:
+````
+npm install
 ````
 
 ## Configuration
