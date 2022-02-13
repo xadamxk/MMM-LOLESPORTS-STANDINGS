@@ -55,7 +55,7 @@ modules: [
 | `updateInterval` | integer | 60 | Number of minutes to poll api for updates. |
 | `apiKey` | string | '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z' | Api key used to query esports API - all users' api key is the default key. |
 | `basePath` | string | 'https://esports-api.lolesports.com/persisted/gw' | Base bath used to query the esports api. |
-| `tournamentIds` | array | ["105658534671026792"] | Array of tournament ids to get esport standings. Module is coded to handle one, but multiple tourament ids may be supported. Refer to tournament table below for ids of other leagues. |
+| `tournamentIds` | array | ["107458335260330212"] | Array of tournament ids to get esport standings. Module is coded to handle one, but multiple tourament ids may be supported. Refer to tournament table below for ids of other leagues. |
 | `hl` | string | 'en-US' | Host language/ locale to use when requesting esports data. |
 | `useTeamFullName` | boolean  | true | Set `false` to show team codes rather than team names. |
 | `showTeamIcons` | boolean  | true | Set `false` to hide team icons. |
