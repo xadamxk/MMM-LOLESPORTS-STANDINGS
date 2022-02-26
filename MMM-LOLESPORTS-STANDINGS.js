@@ -5,7 +5,7 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     // lang: config.language,
     apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
     basePath: "https://esports-api.lolesports.com/persisted/gw",
-    tournamentIds: ["107458335260330212"], // NA LCS 2022
+    tournamentIds: ["107458367237283414"], // NA LCS 2022
     hl: "en-US",
     useTeamFullName: true, // Show team's full name rather than team code
     showTeamIcons: true, // Show team's icon
