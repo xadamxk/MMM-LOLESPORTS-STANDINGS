@@ -1,4 +1,4 @@
-<table class="leagueStandingsTable">
+<table class="lolesportStandingsLeagueStandingsTable">
   {% if standings.length === 0 %}
     <tr>
       <td>{{ 'NO_STANDINGS_FOUND' | translate }}</td>
@@ -13,50 +13,50 @@
     {% endif %}
     {% for standing in standings %}
       {% if standing.teams.length === 1 %}
-        <tr class="leagueStandingsRow">
-          <td class="ordinalText">{{standing.ordinal}}</td>
+        <tr class="lolesportStandingsLeagueStandingsRow">
+          <td class="lolesportStandingsOrdinalText">{{standing.ordinal}}</td>
           {% if config.showTeamIcons %}
-            <td><img class="logo" src="{{ standing.teams[0].image }}"/></td>
+            <td><img class="lolesportStandingsLogo" src="{{ standing.teams[0].image }}"/></td>
           {% endif %}
-          <td class="leagueStandingsRow">
+          <td class="lolesportStandingsLeagueStandingsRow">
             {% if config.useTeamFullName %}
-              <div class="teamCode">{{standing.teams[0].name}}</div>
+              <div class="lolesportStandingsTeamCode">{{standing.teams[0].name}}</div>
             {% else %}
-              <div class="teamCode">{{standing.teams[0].code}}</div>
+              <div class="lolesportStandingsTeamCode">{{standing.teams[0].code}}</div>
             {% endif %}
-            <div class="teamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+            <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
           </td>
         </tr>
       {% else %}
         {% for team in standing.teams %}
           {% if loop.index0 === 0 %}
             <tr>
-              <td class="ordinalText">{{standing.ordinal}}</td>
+              <td class="lolesportStandingsOrdinalText">{{standing.ordinal}}</td>
               {% if config.showTeamIcons %}
-                <td><img class="logo" src="{{ team.image }}"/></td>
+                <td><img class="lolesportStandingsLogo" src="{{ team.image }}"/></td>
               {% endif %}
-              <td class="leagueStandingsRow">
+              <td class="lolesportStandingsLeagueStandingsRow">
                 {% if config.useTeamFullName %}
-                  <div class="teamCode">{{standing.teams[0].name}}</div>
+                  <div class="lolesportStandingsTeamCode">{{standing.teams[0].name}}</div>
                 {% else %}
-                  <div class="teamCode">{{standing.teams[0].code}}</div>
+                  <div class="lolesportStandingsTeamCode">{{standing.teams[0].code}}</div>
                 {% endif %}
-                <div class="teamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+                <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
               </td>
             </tr>
           {% else %}
             <tr>
-              <td class="ordinalText"></td>
+              <td class="lolesportStandingsOrdinalText"></td>
               {% if config.showTeamIcons %}
-                <td><img class="logo" src="{{ team.image }}"/></td>
+                <td><img class="lolesportStandingsLogo" src="{{ team.image }}"/></td>
               {% endif %}
-              <td class="leagueStandingsRow">
+              <td class="lolesportStandingsLeagueStandingsRow">
                 {% if config.useTeamFullName %}
-                  <div class="teamCode">{{team.name}}</div>
+                  <div class="lolesportStandingsTeamCode">{{team.name}}</div>
                 {% else %}
-                  <div class="teamCode">{{team.code}}</div>
+                  <div class="lolesportStandingsTeamCode">{{team.code}}</div>
                 {% endif %}
-                <div class="teamRatio">{{team.record.wins}}W-{{team.record.losses}}L</div>
+                <div class="lolesportStandingsTeamCodeTeamRatio">{{team.record.wins}}W-{{team.record.losses}}L</div>
               </td>
             </tr>
           {% endif %}
