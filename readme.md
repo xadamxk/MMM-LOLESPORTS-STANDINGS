@@ -62,32 +62,35 @@ modules: [
 | `showStageName` | boolean  | true | Set `false` to hide the stage name above standings list (ie. Regular Season, Playoffs, etc) |
 
 ### Tournament Ids
-2022 Tournament Ids
+2024 Tournament Ids
 | **League** | **Tournament Id** |
 | --- | --- |
+| Arabian League Spring | `109545772895506419` |
+| CBLOL Academy Spring | `105549980953490846` |
+| CBLOL Spring | `98767991332355509` |
+| EBL Spring | `105266108767593290` |
+| Elite Series Spring | `107407335299756365` |
+| Greek Legends League Spring | `105266108767593290` |
+| Hitpoint Masters Spring | `105266106309666619` |
+| LCK Challengers Spring | `98767991335774713` |
+| LCK Spring | `98767991310872058` |
+| LCL Spring | `98767991355908944` |
+| LCO Spring | `105709090213554609` |
+| LCS Challengers Spring | `109511549831443335` |
+| LCS Spring | `98767991299243165` |
+| LEC Spring | `98767991302996019` |
+| LFL Spring | `105266103462388553` |
+| Liga Portuguesa Spring | `105266101075764040` |
+| LJL Challengers Spring | `106827757669296909` |
+| LJL Spring | `98767991349978712` |
+| LLA Spring | `101382741235120470` |
+| LOL Italian Tournament Spring | `105266094998946936` |
+| LPL Spring | `98767991314006698` |
+| NLC Spring | `105266098308571975` |
+| PCS Spring | `104366947889790212` |
+| Prime League Spring | `105266091639104326` |
+| Superliga Spring | `105266074488398661` |
+| TCL Spring | `98767991343597634` |
+| Ultraliga Spring | `105266088231437431` |
+| VCS Spring | `107213827295848783` |
 | Worlds | N/A |
-| LCS Summer | `108206581962155974` |
-| LCS Academy Summer | `108471075292469758` |
-| LEC Summer | `108176672283976661` |
-| LCK Summer | `108195478954601542` |
-| LPL Summer | `108431300950695970` |
-| TCL Summer | `108197589213750000` |
-| CBLOL Summer | `108211865716506571` |
-| LLA Summer | `108197521933954516` |
-| LCO Summer | `108197674522551242` |
-| LJL Summer | `108231751506773283` |
-| LCL Summer | `107417471555810057` |
-| PCS Summer | `108166997301178190` |
-| LCS Spring | `107458367237283414` |
-| LCS Academy Spring | `107418086627198298` |
-| LEC Spring | `107417059262120466` |
-| LCK Spring | `107418445247362001` |
-| LPL Spring | `107417779630700437` |
-| TCL Spring | `107566408953200568` |
-| CBLOL Spring | `107405837336179496` |
-| LLA Spring | `106845973122821257` |
-| LCO Spring | `107439320897210747` |
-| LJL Spring | `106269757536651711` |
-| LCL Spring | `106269769724268826` |
-| PCS Spring | `106269875362449980` |
-| VCS Spring | `107611014996486035` |
