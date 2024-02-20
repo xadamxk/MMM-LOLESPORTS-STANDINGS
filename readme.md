@@ -65,32 +65,32 @@ modules: [
 2024 Tournament Ids
 | **League** | **Tournament Id** |
 | --- | --- |
-| Arabian League Spring | `109545772895506419` |
-| CBLOL Academy Spring | `105549980953490846` |
-| CBLOL Spring | `98767991332355509` |
-| EBL Spring | `105266108767593290` |
-| Elite Series Spring | `107407335299756365` |
-| Greek Legends League Spring | `105266108767593290` |
-| Hitpoint Masters Spring | `105266106309666619` |
-| LCK Challengers Spring | `98767991335774713` |
-| LCK Spring | `98767991310872058` |
-| LCL Spring | `98767991355908944` |
-| LCO Spring | `105709090213554609` |
-| LCS Challengers Spring | `109511549831443335` |
-| LCS Spring | `98767991299243165` |
-| LEC Spring | `98767991302996019` |
-| LFL Spring | `105266103462388553` |
-| Liga Portuguesa Spring | `105266101075764040` |
-| LJL Challengers Spring | `106827757669296909` |
-| LJL Spring | `98767991349978712` |
-| LLA Spring | `101382741235120470` |
-| LOL Italian Tournament Spring | `105266094998946936` |
-| LPL Spring | `98767991314006698` |
-| NLC Spring | `105266098308571975` |
-| PCS Spring | `104366947889790212` |
-| Prime League Spring | `105266091639104326` |
-| Superliga Spring | `105266074488398661` |
-| TCL Spring | `98767991343597634` |
-| Ultraliga Spring | `105266088231437431` |
-| VCS Spring | `107213827295848783` |
+| Arabian League Spring | `111561311789132563` |
+| CBLOL Academy Spring | `111561450266818827` |
+| CBLOL Spring | `111687593060275227` |
+| EBL Spring | `110418013822985087` |
+| Elite Series Spring | `111561264585765889` |
+| Greek Legends League Spring | `111561239818866071` |
+| Hitpoint Masters Spring | `111561248544664195` |
+| LCK Challengers Spring | `111697800628410448` |
+| LCK Spring | `111561337005798024` |
+| LCL Spring | `107417471555810057` |
+| LCO Spring | `111561353913765677` |
+| LCS Challengers Spring | `111720047044090655` |
+| LCS Spring | `111504625283627681` |
+| LEC Spring | `111560983131400452` |
+| LFL Spring | `111561126754061496` |
+| Liga Portuguesa Spring | `111561294123889145` |
+| LJL Academy Spring | `110507407705819578` |
+| LJL Spring | `111561344908135976` |
+| LLA Spring | `111561378016799834` |
+| LOL Italian Tournament Spring | `111561283082842475` |
+| LPL Spring | `111561319409710508` |
+| NLC Spring | `111561276695573648` |
+| PCS Spring | `111561360819956641` |
+| Prime League Spring | `111561088092205854` |
+| Superliga Spring | `111521474504777719` |
+| TCL Spring | `111561232442665448` |
+| Ultraliga Spring | `111561077832020188` |
+| VCS Spring | `111561368670434346` |
 | Worlds | N/A |
