@@ -70,7 +70,7 @@ Add `MMM-LOLESPORTS-STANDINGS` module to the `modules` array in the `config/conf
 modules: [
 	{
 		module: "MMM-LOLESPORTS-STANDINGS",
-		position: "middle_center",
+		position: "bottom_left",
 		config: {}
 	}
 ]
