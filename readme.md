@@ -87,6 +87,8 @@ modules: [
 | `useTeamFullName` | boolean  | true | Set `false` to show team codes rather than team names. |
 | `showTeamIcons` | boolean  | true | Set `false` to hide team icons. |
 | `showStageName` | boolean  | true | Set `false` to hide the stage name above standings list (ie. Regular Season, Playoffs, etc) |
+| `trimResults` | boolean / integer | false | Set to number to trim results - useful for 2-column LPL layout |
+| `trimOffset` | integer | 0 | Number of results to skip - useful for 2-column LPL layout |
 
 ### Tournament Ids
 2024 Tournament Ids
