@@ -19,6 +19,33 @@ config: {
 }
 	</code></pre>
 </details>
+<details> 
+  <summary>2-Column Format (LPL):</summary>
+  <img src="https://raw.githubusercontent.com/xadamxk/MMM-LOLESPORTS-STANDINGS/master/screenshots/screenshot_2column_offset.png" title="Preview 2-Column Layout"  />
+	<pre><code>
+		{
+			module: "MMM-LOLESPORTS-STANDINGS",
+			position: "bottom_left",
+			config: {
+				"tournamentIds": ["111561319409710508"], // LPL 2024 Spring
+				"useTeamFullName": false,
+				"trimResults": 9, // Trim the results to show only 9
+				"trimOffset": 0
+			}
+		},
+		{
+			module: "MMM-LOLESPORTS-STANDINGS",
+			position: "bottom_right",
+			config: {
+				"tournamentIds": ["111561319409710508"], // LPL 2024 Spring
+				"showStageName": false,
+				"useTeamFullName": false,
+				"trimResults": 10, // Required for 2-column layout
+				"trimOffset": 9 // Offset the results to skip the first 9
+			}
+		}
+	</code></pre>
+</details>
 
 ## Installation
 In your terminal, go to your MagicMirror's Module folder:

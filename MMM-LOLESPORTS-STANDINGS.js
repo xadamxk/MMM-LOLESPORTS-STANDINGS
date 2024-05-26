@@ -5,8 +5,10 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     // lang: config.language,
     apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
     basePath: "https://esports-api.lolesports.com/persisted/gw",
-    tournamentIds: ["108206581962155974"], // NA LCS Summer 2022
+    tournamentIds: ["111504625283627681"], // NA LCS Spring 2024
     hl: "en-US",
+    trimResults: false, // Number of results to show
+    trimOffset: 0, // Number of results to skip - useful for 2-column layouts
     useTeamFullName: true, // Show team's full name rather than team code
     showTeamIcons: true, // Show team's icon
     showStageName: true // Show the stage name (ie. Regular Season, Playoffs, etc)
@@ -77,7 +79,14 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
           if (!section["rankings"] || !section["rankings"].length) {
             return;
           }
-          this.standings = section["rankings"];
+          const offsetIndex = this.config.trimOffset || 0;
+          this.standings =
+            this.config.trimResults === false
+              ? section["rankings"]
+              : section["rankings"].slice(
+                offsetIndex,
+                offsetIndex + this.config.trimResults
+              );
           this.stageName = stageName;
           this.updateDom(500);
         });
