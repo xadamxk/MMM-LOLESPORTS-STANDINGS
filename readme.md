@@ -91,35 +91,15 @@ modules: [
 | `trimOffset` | integer | 0 | Number of results to skip - useful for 2-column LPL layout |
 
 ### Tournament Ids
-2024 Tournament Ids
+To obtain Tournament Ids for a league, pass the desired League Id into the following request, choose the desired tournament:
+```
+curl --location 'https://esports-api.lolesports.com/persisted/gw/getTournamentsForLeague?hl=en-US&leagueId=113470291645289904' \
+--header 'x-api-key: 0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
+```
+
+2025 Tournament Ids
 | **League** | **Tournament Id** |
-| --- | --- |
-| Arabian League Spring | `111561311789132563` |
-| CBLOL Academy Spring | `111561450266818827` |
-| CBLOL Spring | `111687593060275227` |
-| EBL Spring | `110418013822985087` |
-| Elite Series Spring | `111561264585765889` |
-| Greek Legends League Spring | `111561239818866071` |
-| Hitpoint Masters Spring | `111561248544664195` |
-| LCK Challengers Spring | `111697800628410448` |
-| LCK Spring | `111561337005798024` |
-| LCL Spring | `107417471555810057` |
-| LCO Spring | `111561353913765677` |
-| LCS Challengers Spring | `111720047044090655` |
-| LCS Spring | `111504625283627681` |
-| LEC Spring | `111560983131400452` |
-| LFL Spring | `111561126754061496` |
-| Liga Portuguesa Spring | `111561294123889145` |
-| LJL Academy Spring | `110507407705819578` |
-| LJL Spring | `111561344908135976` |
-| LLA Spring | `111561378016799834` |
-| LOL Italian Tournament Spring | `111561283082842475` |
-| LPL Spring | `111561319409710508` |
-| NLC Spring | `111561276695573648` |
-| PCS Spring | `111561360819956641` |
-| Prime League Spring | `111561088092205854` |
-| Superliga Spring | `111521474504777719` |
-| TCL Spring | `111561232442665448` |
-| Ultraliga Spring | `111561077832020188` |
-| VCS Spring | `111561368670434346` |
+| LTA North Split 3 | `113487190604684835` |
+| LTA - cross-conference playoffs only, use north/south instead for regular season | `113487258403577480` |
+| LTA South Split 3 | `113487198985031867` |
 | Worlds | N/A |
