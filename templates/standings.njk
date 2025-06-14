@@ -24,7 +24,9 @@
             {% else %}
               <div class="lolesportStandingsTeamCode">{{standing.teams[0].code}}</div>
             {% endif %}
-            <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+            {% if standings.teams[0].record %}
+              <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>                
+            {% endif %}
           </td>
         </tr>
       {% else %}
@@ -41,7 +43,9 @@
                 {% else %}
                   <div class="lolesportStandingsTeamCode">{{standing.teams[0].code}}</div>
                 {% endif %}
-                <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+                {% if standings.teams[0].record %}
+                  <div class="lolesportStandingsTeamCodeTeamRatio">{{standing.teams[0].record.wins}}W-{{standing.teams[0].record.losses}}L</div>
+                {% endif %}
               </td>
             </tr>
           {% else %}
@@ -56,7 +60,9 @@
                 {% else %}
                   <div class="lolesportStandingsTeamCode">{{team.code}}</div>
                 {% endif %}
-                <div class="lolesportStandingsTeamCodeTeamRatio">{{team.record.wins}}W-{{team.record.losses}}L</div>
+                {% if team.record %}
+                  <div class="lolesportStandingsTeamCodeTeamRatio">{{team.record.wins}}W-{{team.record.losses}}L</div>
+                {% endif %}
               </td>
             </tr>
           {% endif %}

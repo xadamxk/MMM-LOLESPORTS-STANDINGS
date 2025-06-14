@@ -9,6 +9,13 @@ const MATCH_STATES = {
   UNSTARTED: "unstarted",
 };
 
+const MATCH_RESULT_OUTCOMES = {
+  WIN: "win",
+  LOSS: "loss",
+};
+
+const UNDECIDED_TEAM_ID = "0";
+
 Module.register("MMM-LOLESPORTS-STANDINGS", {
   // Default module config
   defaults: {
@@ -16,8 +23,8 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     // lang: config.language,
     apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
     basePath: "https://esports-api.lolesports.com/persisted/gw",
-    tournamentId: "",
-    leagueId: "113470291645289904", // LTA North
+    tournamentId: null,
+    leagueId: null,
     hl: "en-US",
     trimResults: false, // Number of results to show
     trimOffset: 0, // Number of results to skip - useful for 2-column layouts
@@ -25,6 +32,7 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     showTeamIcons: true, // Show team's icon
     showStageName: true, // Show the stage name (ie. Regular Season, Playoffs, etc)
   },
+  defaultLeagueId: "113470291645289904",
 
   // Module properties.
   standings: [],
@@ -33,12 +41,15 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
   // Start the module.
   start: function () {
     // Get initial API data
-    this.getStandingsData(this.config.tournamentId, this.config.leagueId);
+    const leagueId = this.config.tournamentId
+      ? this.config.leagueId
+      : this.defaultLeagueId;
+    this.getStandingsData(this.config.tournamentId, leagueId);
 
     // Schedule update poll
     var self = this;
     setInterval(function () {
-      self.getStandingsData(this.config.tournamentId, this.config.leagueId);
+      self.getStandingsData(this.config.tournamentId, leagueId);
     }, self.config.updateInterval * 60 * 1000); //convert to milliseconds
   },
   getTranslations() {
@@ -87,7 +98,59 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     }
   },
   formatPlayoffStandings: function (matches) {
-    //
+    if (!matches || matches.length === 0) {
+      return; // TODO: update dom with error string
+    }
+
+    const teamStandings = []; // team[][]
+    let ordinal = 1;
+
+    const isTeamInStandings = (teamId) =>
+      teamStandings.some((rank) =>
+        rank.teams.some((team) => team.id === teamId)
+      );
+
+    for (const match of matches.slice().reverse()) {
+      if (match.state === MATCH_STATES.COMPLETED) {
+        const winningTeam = match.teams.find(
+          (team) => team.result.outcome === MATCH_RESULT_OUTCOMES.WIN
+        );
+        const losingTeam = match.teams.find(
+          (team) => team.result.outcome === MATCH_RESULT_OUTCOMES.LOSS
+        );
+        if (winningTeam && !isTeamInStandings(winningTeam.id)) {
+          winningTeam.ordinal = ordinal;
+          teamStandings.push({ ordinal: ordinal, teams: [winningTeam] });
+          ordinal++;
+        }
+        if (losingTeam && !isTeamInStandings(losingTeam.id)) {
+          losingTeam.ordinal = ordinal;
+          teamStandings.push({ ordinal: ordinal, teams: [losingTeam] });
+          ordinal++;
+        }
+      } else if (match.state === MATCH_STATES.UNSTARTED) {
+        const team1 = match.teams[0];
+        const team2 = match.teams[1];
+
+        const isTeamUndecided = (teamId) => teamId === UNDECIDED_TEAM_ID;
+        const tempStanding = [];
+        if (!isTeamInStandings(team1.id) && !isTeamUndecided(team1.id)) {
+          team1.ordinal = ordinal;
+          tempStanding.push(team1);
+        }
+        if (!isTeamInStandings(team2.id) && !isTeamUndecided(team2.id)) {
+          team2.ordinal = ordinal;
+          tempStanding.push(team2);
+        }
+        if (tempStanding.length > 0) {
+          teamStandings.push({ ordinal: ordinal, teams: tempStanding });
+          ordinal++;
+        }
+      }
+    }
+    this.standings = teamStandings;
+    this.stageName = "Playoffs";
+    this.updateDom(500);
   },
   findActiveOrFutureTournament: function (results) {
     // data.leagues.tournaments {id, slug, startDate (YYY-MM-DD), endDate (YYY-MM-DD)}
@@ -103,8 +166,9 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     );
     if (activeTournament) {
       this.getStandingsData(activeTournament.id, null);
+    } else {
+      // TODO: Check for upcoming splits after June 16, 2025
     }
-    // TODO: Check for upcoming splits after June 16
   },
   // Condense standing data and render it
   formatStandingData: function (data) {
@@ -124,15 +188,14 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
         playoffStage &&
         playoffStage.sections[0].matches[0].state === MATCH_STATES.COMPLETED;
 
-      standing["stages"].forEach((stage) => {
+      standing["stages"].forEach((stage, stageIndex) => {
         stageName = stage["name"];
-        stage["sections"].forEach((section) => {
+        stage["sections"].forEach((section, sectionIndex) => {
           if (
             section["name"].toLowerCase() === STAGE_SLUGS.PLAYOFFS &&
             arePlayoffsStarted
           ) {
-            // TODO: do playoff logic
-            console.warn("playoffs not yet implemented");
+            this.formatPlayoffStandings(section.matches);
           } else if (
             section["name"] === STAGE_SLUGS.REGULAR_SEASON &&
             section["rankings"] &&
@@ -148,6 +211,13 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
                   );
             this.stageName = stageName;
             this.updateDom(500);
+          } else if (
+            standing["stages"].length - 1 === stageIndex &&
+            stage["sections"].length - 1 === sectionIndex
+          ) {
+            // Stage names aren't always playoffs - LCK (113503260417890076) is "Road to MSI"
+            // If no known stage was found, assume the last is a playoff
+            this.formatPlayoffStandings(section.matches);
           }
         });
       });
