@@ -79,27 +79,17 @@ modules: [
 
 | **Option** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- |
+| `leagueId` | string | '113470291645289904' | Defaults to LTA North. If provided, the module will look up tournaments and automatically select the active or upcoming tournament. If provided, any specified tournamentId will be ignored. |
 | `updateInterval` | integer | 60 | Number of minutes to poll api for updates. |
-| `apiKey` | string | '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z' | Api key used to query esports API - all users' api key is the default key. |
-| `basePath` | string | 'https://esports-api.lolesports.com/persisted/gw' | Base bath used to query the esports api. |
-| `tournamentIds` | array | ["107458335260330212"] | Array of tournament ids to get esport standings. Module is coded to handle one, but multiple tourament ids may be supported. Refer to tournament table below for ids of other leagues. |
-| `hl` | string | 'en-US' | Host language/ locale to use when requesting esports data. |
 | `useTeamFullName` | boolean  | true | Set `false` to show team codes rather than team names. |
 | `showTeamIcons` | boolean  | true | Set `false` to hide team icons. |
 | `showStageName` | boolean  | true | Set `false` to hide the stage name above standings list (ie. Regular Season, Playoffs, etc) |
 | `trimResults` | boolean / integer | false | Set to number to trim results - useful for 2-column LPL layout |
 | `trimOffset` | integer | 0 | Number of results to skip - useful for 2-column LPL layout |
+| `tournamentId` | string | null | Provided tournament id. Unless you have a desired tournament in mind, you probably want to use leagueId instead. Remove leagueId if providing an explicit tournamentId. |
+| `apiKey` | string | '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z' | Api key used to query esports API - all users' api key is the default key. |
+| `basePath` | string | https://esports-api.lolesports.com/persisted/gw' | Base bath used to query the esports api. |
+| `hl` | string | 'en-US' | Host language/ locale to use when requesting esports data. |
 
-### Tournament Ids
-To obtain Tournament Ids for a league, pass the desired League Id into the following request, choose the desired tournament:
-```
-curl --location 'https://esports-api.lolesports.com/persisted/gw/getTournamentsForLeague?hl=en-US&leagueId=113470291645289904' \
---header 'x-api-key: 0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
-```
-
-2025 Tournament Ids
-| **League** | **Tournament Id** |
-| LTA North Split 3 | `113487190604684835` |
-| LTA - cross-conference playoffs only, use north/south instead for regular season | `113487258403577480` |
-| LTA South Split 3 | `113487198985031867` |
-| Worlds | N/A |
+### League Ids
+Refer to [MMM-LOLESPORTS-SCHEDULES](https://github.com/xadamxk/MMM-LOLESPORTS-SCHEDULES?tab=readme-ov-file#mmm-lolesports-schedules) for current league ids.
