@@ -92,4 +92,4 @@ modules: [
 | `hl` | string | 'en-US' | Host language/ locale to use when requesting esports data. |
 
 ### League Ids
-Refer to [MMM-LOLESPORTS-SCHEDULES](https://github.com/xadamxk/MMM-LOLESPORTS-SCHEDULES?tab=readme-ov-file#mmm-lolesports-schedules) for current league ids.
+Refer to [MMM-LOLESPORTS-SCHEDULES](https://github.com/xadamxk/MMM-LOLESPORTS-SCHEDULES?tab=readme-ov-file#league-ids) for current league ids.
