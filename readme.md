@@ -1,13 +1,12 @@
 # MMM-LOLESPORTS-STANDINGS
-An Esports standings module for a provided League of Legends league id.
-Module for <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a>.
+An Esports standings module for a provided League of Legends league id. Now supports Playoff formats! Module for <a href="https://github.com/MichMich/MagicMirror">MagicMirror</a>.
 
 Other league related modules:
 - <a href="https://github.com/xadamxk/MMM-CHAMPIONSQUEUE-LEADERBOARD">MMM-CHAMPIONSQUEUE-LEADERBOARD</a>: Display LOL Champions Queue standings
 - <a href="https://github.com/xadamxk/MMM-LOLESPORTS-SCHEDULES">MMM-LOLESPORTS-SCHEDULES</a>: Display LOL Esports league schedules 
 
 ## Previews with Configuration Samples
-#### Default
+#### Default (Regular Season)
 <img src="https://github.com/xadamxk/MMM-LOLESPORTS-STANDINGS/blob/master/screenshots/screenshot_default.png?raw=true" title="Preview"  />
 
 <details> 
@@ -46,6 +45,15 @@ config: {
 		}
 	</code></pre>
 </details>
+<details>
+<summary>Default (Playoff Bracket)</summary>
+Left: LOLEsports playoff bracket
+	
+Right: MMM-LOLESPORTS-STANDINGS representation
+
+  <img src="https://raw.githubusercontent.com/xadamxk/MMM-LOLESPORTS-STANDINGS/refs/heads/master/screenshots/playoffComparison.png" title="Default (Playoff Bracket)"  />
+</details>
+
 
 ## Installation
 In your terminal, go to your MagicMirror's Module folder:
