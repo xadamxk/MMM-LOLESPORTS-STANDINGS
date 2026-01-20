@@ -87,7 +87,7 @@ modules: [
 
 | **Option** | **Type** | **Default** | **Description** |
 | --- | --- | --- | --- |
-| `leagueId` | string | '113470291645289904' | Defaults to LTA North. If provided, the module will look up tournaments and automatically select the active or upcoming tournament. If provided, any specified tournamentId will be ignored. |
+| `leagueId` | string | '98767991299243165' | Defaults to LCS. If provided, the module will look up tournaments and automatically select the active or upcoming tournament. If provided, any specified tournamentId will be ignored. |
 | `updateInterval` | integer | 60 | Number of minutes to poll api for updates. |
 | `useTeamFullName` | boolean  | true | Set `false` to show team codes rather than team names. |
 | `showTeamIcons` | boolean  | true | Set `false` to hide team icons. |
@@ -96,7 +96,7 @@ modules: [
 | `trimOffset` | integer | 0 | Number of results to skip - useful for 2-column LPL layout |
 | `tournamentId` | string | null | Provided tournament id. Unless you have a desired tournament in mind, you probably want to use leagueId instead. Remove leagueId if providing an explicit tournamentId. |
 | `apiKey` | string | '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z' | Api key used to query esports API - all users' api key is the default key. |
-| `basePath` | string | https://esports-api.lolesports.com/persisted/gw' | Base bath used to query the esports api. |
+| `basePath` | string | https://esports-api.lolesports.com' | Base bath used to query the esports api. |
 | `hl` | string | 'en-US' | Host language/ locale to use when requesting esports data. |
 
 ### League Ids
@@ -107,9 +107,8 @@ League Ids can be obtained in two ways:
 
 | Name                      | League Id             |
 |---------------------------|-----------------------|
-| LTA North                 | `113470291645289904`  |
-| LTA Cross-Conference      | `113475149040947852`  |
-| LTA South                 | `113475181634818701`  |
+| First Stand               | `113464388705111224`  |
+| LCS                       | `98767991299243165`   |
 | LEC                       | `98767991302996019`   |
 | LCK                       | `98767991310872058`   |
 | LPL                       | `98767991314006698`   |

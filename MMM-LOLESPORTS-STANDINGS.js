@@ -22,7 +22,7 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     updateInterval: 60, // minutes
     // lang: config.language,
     apiKey: "0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z",
-    basePath: "https://esports-api.lolesports.com/persisted/gw",
+    basePath: "https://esports-api.lolesports.com",
     tournamentId: null,
     leagueId: null,
     hl: "en-US",
@@ -32,7 +32,7 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     showTeamIcons: true, // Show team's icon
     showStageName: true, // Show the stage name (ie. Regular Season, Playoffs, etc)
   },
-  defaultLeagueId: "113470291645289904",
+  defaultLeagueId: "98767991299243165",
 
   // Module properties.
   standings: [],
@@ -156,18 +156,28 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
     // data.leagues.tournaments {id, slug, startDate (YYY-MM-DD), endDate (YYY-MM-DD)}
     const today = new Date();
 
-    // Check for active tournaments
-    const activeTournament = results.data.leagues[0].tournaments.find(
-      (tournament) => {
-        const tournamentStartDate = new Date(tournament.startDate);
-        const tournamentEndDate = new Date(tournament.endDate);
-        return tournamentStartDate < today && today < tournamentEndDate;
-      }
+    // Sort tournaments by startDate (earliest first)
+    const sortedTournaments = results.data.leagues[0].tournaments.sort(
+      (a, b) => new Date(a.startDate) - new Date(b.startDate)
     );
+
+    // Check for active tournaments
+    const activeTournament = sortedTournaments.find((tournament) => {
+      const tournamentStartDate = new Date(tournament.startDate);
+      const tournamentEndDate = new Date(tournament.endDate);
+      return tournamentStartDate < today && today < tournamentEndDate;
+    });
+
+    // Fall back to upcoming tournament
+    const upcomingTournament = sortedTournaments.find((tournament) => {
+      const tournamentStartDate = new Date(tournament.startDate);
+      return tournamentStartDate > today;
+    });
+
     if (activeTournament) {
       this.getStandingsData(activeTournament.id, null);
-    } else {
-      // TODO: Check for upcoming splits after June 16, 2025
+    } else if (upcomingTournament) {
+      this.getStandingsData(upcomingTournament.id, null);
     }
   },
   // Condense standing data and render it
@@ -191,13 +201,18 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
       standing["stages"].forEach((stage, stageIndex) => {
         stageName = stage["name"];
         stage["sections"].forEach((section, sectionIndex) => {
+          // Normalize section name for comparison (handle both "Regular Season" and "regular_season" formats)
+          const normalizedSectionName = section["name"]
+            .toLowerCase()
+            .replace(/\s+/g, "_");
+
           if (
-            section["name"].toLowerCase() === STAGE_SLUGS.PLAYOFFS &&
+            normalizedSectionName === STAGE_SLUGS.PLAYOFFS &&
             arePlayoffsStarted
           ) {
             this.formatPlayoffStandings(section.matches);
           } else if (
-            section["name"] === STAGE_SLUGS.REGULAR_SEASON &&
+            normalizedSectionName === STAGE_SLUGS.REGULAR_SEASON &&
             section["rankings"] &&
             section["rankings"].length > 0
           ) {
@@ -211,10 +226,7 @@ Module.register("MMM-LOLESPORTS-STANDINGS", {
                   );
             this.stageName = stageName;
             this.updateDom(500);
-          } else if (
-            standing["stages"].length - 1 === stageIndex &&
-            stage["sections"].length - 1 === sectionIndex
-          ) {
+          } else if (0 === stageIndex && 0 === sectionIndex) {
             // Stage names aren't always playoffs - LCK (113503260417890076) is "Road to MSI"
             // If no known stage was found, assume the last is a playoff
             this.formatPlayoffStandings(section.matches);

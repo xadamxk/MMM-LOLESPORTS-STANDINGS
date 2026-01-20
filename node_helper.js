@@ -6,47 +6,83 @@
  */
 
 var NodeHelper = require("node_helper");
-var LolesportsApi = require("esm")(module)("lolesports-js-sdk");
-var defaultClient = LolesportsApi.ApiClient.instance;
-var api = new LolesportsApi.LeaguesApi();
+var https = require("https");
 
 module.exports = NodeHelper.create({
   // Override socketNotificationReceived method.
   socketNotificationReceived: function (notification, payload) {
     let self = this;
-    defaultClient.basePath = payload["basePath"];
-    defaultClient.authentications["apiKeyAuth"]["apiKey"] = payload["apiKey"];
+    const basePath = payload["basePath"];
+    const apiKey = payload["apiKey"];
 
     if (notification === "MMM-LOLESPORTS-STANDINGS-GET-STANDINGS") {
-      api.getStandings(
-        LolesportsApi.Locale.enUS,
-        { tournamentId: [payload["tournamentIds"]] },
-        function (error, data, response) {
-          if (error) {
-            console.error(error);
-          } else {
-            // console.log("API called successfully. Returned data: " + JSON.stringify(data));
-            self.sendStandingsNotification(data);
+      const tournamentIds = payload["tournamentIds"];
+      const url = `${basePath}/persisted/gw/getStandings?hl=en-US&tournamentId=${tournamentIds}`;
+
+      https
+        .get(
+          url,
+          {
+            headers: {
+              "x-api-key": apiKey,
+            },
+          },
+          (response) => {
+            let data = "";
+
+            // A chunk of data has been received
+            response.on("data", (chunk) => {
+              data += chunk;
+            });
+
+            // The whole response has been received
+            response.on("end", () => {
+              try {
+                const jsonData = JSON.parse(data);
+                self.sendStandingsNotification(jsonData);
+              } catch (error) {
+                console.error("Error parsing response:", error);
+              }
+            });
           }
-        }
-      );
+        )
+        .on("error", (error) => {
+          console.error("Error fetching standings:", error);
+        });
     } else if (notification === "MMM-LOLESPORTS-STANDINGS-GET-TOURNAMENTS") {
-      api.getTournamentsForLeague(
-        LolesportsApi.Locale.enUS,
-        {
-          leagueId: payload["leagueId"],
-        },
-        function (error, data, response) {
-          if (error) {
-            console.error(error);
-          } else {
-            // console.log(
-            //   "API called successfully. Returned data: " + JSON.stringify(data)
-            // );
-            self.sendTournamentsNotification(data);
+      const leagueId = payload["leagueId"];
+      const url = `${basePath}/persisted/gw/getTournamentsForLeague?hl=en-US&leagueId=${leagueId}`;
+
+      https
+        .get(
+          url,
+          {
+            headers: {
+              "x-api-key": apiKey,
+            },
+          },
+          (response) => {
+            let data = "";
+
+            // A chunk of data has been received
+            response.on("data", (chunk) => {
+              data += chunk;
+            });
+
+            // The whole response has been received
+            response.on("end", () => {
+              try {
+                const jsonData = JSON.parse(data);
+                self.sendTournamentsNotification(jsonData);
+              } catch (error) {
+                console.error("Error parsing response:", error);
+              }
+            });
           }
-        }
-      );
+        )
+        .on("error", (error) => {
+          console.error("Error fetching tournaments:", error);
+        });
     }
   },
   // Example function send notification test
